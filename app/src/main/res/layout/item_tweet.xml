@@ -27,5 +27,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@id/ivProfile"
+        android:autoLink="all"
+        android:linksClickable="true"
         tools:text="This is a simple tweet" />
 </RelativeLayout>
