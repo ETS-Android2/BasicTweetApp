@@ -118,7 +118,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_CODE && REQUEST_CODE == RESULT_OK){
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
             // Get data from intent
             Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
             tweets.add(0, tweet);
