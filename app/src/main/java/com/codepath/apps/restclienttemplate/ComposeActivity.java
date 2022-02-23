@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -24,6 +27,7 @@ public class ComposeActivity extends AppCompatActivity {
     public static final int MAX_TWEET_LENGTH = 280;
 
     EditText etCompose;
+    TextView tvLimit;
     Button btnTweet;
 
     TwitterClient client;
@@ -37,6 +41,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
+        tvLimit = findViewById(R.id.tvLimit);
 
         // ClickListener for Button
         btnTweet.setOnClickListener(new View.OnClickListener() {
@@ -76,5 +81,25 @@ public class ComposeActivity extends AppCompatActivity {
                 });
             }
         });
+
+        // TextChangedListener for compose
+        etCompose.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Fires right as the text is being changed (even supplies the range of text)
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                tvLimit.setText("0/280");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Fires right after the text has changed
+                tvLimit.setText((s.toString().length() + "/280"));
+            }
+        });
+
     }
 }
